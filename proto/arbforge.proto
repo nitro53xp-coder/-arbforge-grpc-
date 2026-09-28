@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package arbforge;
+
+option go_package = "github.com/nitro53xp-coder/-arbforge-grpc-/gen;arbforge";
+
+service ArbForgeService {
+  rpc ValidateDeal(ValidateDealRequest) returns (ValidateDealResponse);
+  rpc AskMonica(AskMonicaRequest) returns (AskMonicaResponse);
+  rpc GetConfidenceScore(GetConfidenceScoreRequest) returns (GetConfidenceScoreResponse);
+  rpc GenerateListing(GenerateListingRequest) returns (GenerateListingResponse);
+}
+
+message ValidateDealRequest {
+  string product_name = 1;
+  double buy_price = 2;
+}
+
+message ValidateDealResponse {
+  bool valid = 1;
+  string message = 2;
+  double estimated_roi = 3;
+  string status = 4;
+}
+
+message AskMonicaRequest {
+  string prompt = 1;
+}
+
+message AskMonicaResponse {
+  string answer = 1;
+  string tone = 2;
+}
+
+message GetConfidenceScoreRequest {
+  double buy_price = 1;
+  double sell_price = 2;
+}
+
+message GetConfidenceScoreResponse {
+  double score = 1;
+  string label = 2;
+  string summary = 3;
+}
+
+message GenerateListingRequest {
+  string product_name = 1;
+  double buy_price = 2;
+  double sell_price = 3;
+}
+
+message GenerateListingResponse {
+  string listing_title = 1;
+  string listing_body = 2;
+  string tags = 3;
+}
